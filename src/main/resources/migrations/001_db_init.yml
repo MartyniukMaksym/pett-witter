@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: martyniuk
+      changes:
+        - sql:
+            sql: "CREATE DATABASE IF NOT EXISTS twitter_db;"

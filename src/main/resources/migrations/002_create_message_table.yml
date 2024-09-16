@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id:  2
+      author:  martyniuk
+      changes:
+        - createTable:
+            tableName:  messages
+            columns:
+              - column:
+                  name:  id
+                  type:  int
+                  autoIncrement:  true
+                  constraints:
+                    primaryKey:  true
+                    nullable:  false
+              - column:
+                  name:  content
+                  type:  varchar(250)
+                  constraints:
+                    nullable:  false

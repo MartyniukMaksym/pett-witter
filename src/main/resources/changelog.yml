@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: migrations/001_db_init.yml
+  - include:
+      file: migrations/002_create_message_table.yml
