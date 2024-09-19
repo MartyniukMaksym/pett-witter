@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -45,8 +46,14 @@ public class MessageService {
     @Transactional
     public Message deleteMessage(Long id) {
         log.info("Deleting message by message Id.");
-        Message existingMessage = getMessageById(id);
+        var existingMessage = getMessageById(id);
         messageRepository.deleteById(id);
         return existingMessage;
+    }
+
+    @Transactional
+    public List<Message> getAllMessages() {
+        log.info("Getting all messages from DB.");
+        return messageRepository.getAllMessages();
     }
 }

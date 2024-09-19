@@ -1,16 +1,13 @@
 package com.petproject.pettwitter.controller;
 
 import com.petproject.pettwitter.dto.MessageDto;
+import com.petproject.pettwitter.entity.Message;
 import com.petproject.pettwitter.mapper.MessageMapper;
 import com.petproject.pettwitter.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -49,7 +46,8 @@ public class MessageController {
 
     }
 
-    public List<String> getAllMessages() {
-        return Collections.emptyList();
+    @GetMapping("/all")
+    public List<MessageDto> getAllMessages() {
+        return messageMapper.toDto(messageService.getAllMessages());
     }
 }
