@@ -5,10 +5,12 @@ import com.petproject.pettwitter.entity.Message;
 import com.petproject.pettwitter.mapper.MessageMapper;
 import com.petproject.pettwitter.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/messages")
@@ -47,7 +49,12 @@ public class MessageController {
     }
 
     @GetMapping("/all")
-    public List<MessageDto> getAllMessages() {
-        return messageMapper.toDto(messageService.getAllMessages());
+    public List<MessageDto> getAllMessages(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Page<Message> messagePage = messageService.getAllMessages(page, size);
+        return messagePage.stream()
+                .map(messageMapper::toDto)
+                .collect(Collectors.toList());
     }
 }

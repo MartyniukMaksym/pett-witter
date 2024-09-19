@@ -5,6 +5,8 @@ import com.petproject.pettwitter.entity.Message;
 import com.petproject.pettwitter.repository.MessageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,8 +54,9 @@ public class MessageService {
     }
 
     @Transactional
-    public List<Message> getAllMessages() {
-        log.info("Getting all messages from DB.");
-        return messageRepository.getAllMessages();
+    public Page<Message> getAllMessages(int page, int size) {
+        log.info("Getting messages with pagination, page: {}, size: {}", page, size);
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return messageRepository.findAllByOrderByCreatedAtDesc(pageRequest);
     }
 }
