@@ -3,3 +3,5 @@ databaseChangeLog:
       file: migrations/001_db_init.yml
   - include:
       file: migrations/002_create_message_table.yml
+  - include:
+      file: migrations/003_add_created_at_column.yml

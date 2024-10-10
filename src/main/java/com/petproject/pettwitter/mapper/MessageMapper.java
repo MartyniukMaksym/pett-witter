@@ -4,6 +4,7 @@ import com.petproject.pettwitter.dto.MessageDto;
 import com.petproject.pettwitter.entity.Message;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class MessageMapper {
 
@@ -11,13 +12,7 @@ public class MessageMapper {
         MessageDto messageDto = new MessageDto();
         messageDto.setId(message.getId());
         messageDto.setContent(message.getContent());
+        messageDto.setCreatedAt(message.getCreatedAt());
         return messageDto;
     }
-
-//    public Message toEntity(MessageDto messageDto) {
-//        Message message = new Message();
-//        message.setId(messageDto.getId());
-//        message.setContent(messageDto.getContent());
-//        return message;
-//    }
 }

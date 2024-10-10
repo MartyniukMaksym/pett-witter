@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: martyniuk
+      changes:
+        - addColumn:
+            tableName: messages
+            columns:
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - sql:
+            sql: "UPDATE messages SET created_at = NOW() WHERE createdAt IS NULL;"
